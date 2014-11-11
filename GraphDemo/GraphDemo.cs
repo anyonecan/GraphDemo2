@@ -46,15 +46,15 @@ namespace GraphDemo
                             rr = null;
                             rr = new Read(myStream);
                             string[] header = rr.get_Header();
-                            List<string> lX = new List<string>();
-                            List<string> lY = new List<string>();
-                            for (int i = 0; i < header.Length; i++)
-                            {
-                                lX.Add(header[i]); lY.Add(header[i]);
-                            }
+                            //List<string> lX = new List<string>();
+                            //List<string> lY = new List<string>();
+                            //for (int i = 0; i < header.Length; i++)
+                            //{
+                            //    lX.Add(header[i]); lY.Add(header[i]);
+                            //}
                             //Populate the ComboBoxes           -- don't need this, element labels could go where header is
-                            xBox.DataSource = lX;
-                            yBox.DataSource = lY;
+                            //xBox.DataSource = lX;
+                            //yBox.DataSource = lY;
                             // Close the stream
                             myStream.Close();
                         }
@@ -89,17 +89,22 @@ namespace GraphDemo
             }
         }
 
-        private void btnPlot_Click(object sender, EventArgs e)
+        public void btnPlot_Click(object sender, EventArgs e)
         {
             if (rr != null)
             {
-                Plot pl = new Plot(rr, xBox, yBox, chart);
+                Plot pl = new Plot(rr,/* xBox, yBox ,*/  chart);
             }
             else
             {
                 MessageBox.Show("Error, no data to plot! Please load csv file");
                 return;
             }
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

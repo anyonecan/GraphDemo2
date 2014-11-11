@@ -11,20 +11,25 @@ namespace GraphDemo
 {
     class Plot
     {
-        public Plot(Read rr, ComboBox xBox, ComboBox yBox, Chart chart)
+       // public Plot(Read rr, ComboBox xBox, ComboBox yBox, Chart chart)
+        public Plot(Read rr,  Chart chart)
         {   // comes here when Plot button of demo is clicked
-            int indX = xBox.SelectedIndex;
-            int indX1 = xBox.SelectedIndex + 1;
-            int indX2 = xBox.SelectedIndex + 2;
-            int indX3 = xBox.SelectedIndex + 3;
-            int indY = yBox.SelectedIndex;
+            int indX = 1;// xBox.SelectedIndex;  // this will be 1 always
+            //int indX1 = xBox.SelectedIndex + 1;
+            //int indX2 = xBox.SelectedIndex + 2;
+            //int indX3 = xBox.SelectedIndex + 3;
+            int indY = 0; // yBox.SelectedIndex;          // this will be 0 always
             float[,] data = rr.get_Data();
             int nLines = rr.get_nLines();
+            string[] ElemLabels = rr.get_Header();
             string SeriesCode ;
             string TmpS;
 
             chart.Series.Clear(); //ensure that the chart is empty
             chart.Legends.Clear(); // moved from below to try to get everything in loop, may have to move back
+       //     chart.mark
+
+            
 
            chart.ChartAreas[0].AxisX.Minimum = 0;  // try this here, do we need for all x's? MyChart goes to chart--works
 
@@ -33,12 +38,13 @@ namespace GraphDemo
                
            }
  */
-           for (int i = 0; i < 5 /*Global.nElements */; i++)
+           for (int i = 0; i < Global.nElements; i++)
            {
                TmpS =i.ToString() ;
                SeriesCode = "Series" + TmpS;
                chart.Series.Add(SeriesCode);
                chart.Series[i].ChartType = SeriesChartType.Point; // runs, but now there are lines from the X axis down to the points
+               chart.Series[i].Name = ElemLabels[i];
 
            }
 
@@ -64,11 +70,11 @@ namespace GraphDemo
             //    chart.Series[4].Points.AddXY(data[j, indX3], data[j, indY]);  // copy pasted from line above
             //}
 
-           for (int j = 0; j < nLines+1; j++)
+           for (int j = 0; j < nLines+1 ; j++)  //lines of results from 0 to ...
            {
-               for (int indeX = 1; indeX < Global.nElements+1; indeX++)
+               for (int indeX = 0; indeX < Global.nElements; indeX++)  // elem from 1 to ...   
                {
-                   chart.Series[j].Points.AddXY(data[j, indeX], data[j, indY]); 
+                   chart.Series[indeX ].Points.AddXY(data[j, indeX], data[j, indY]); 
                }
            }
 

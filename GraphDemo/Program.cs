@@ -11,6 +11,7 @@ namespace GraphDemo
     {
         public static int nElements;
         // call it with Global.nElements
+        
     }
     // end of try
     static class Program

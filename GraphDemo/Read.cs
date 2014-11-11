@@ -151,8 +151,22 @@ namespace GraphDemo
             }
             sr.Close();
             jj = jj;
+            // set the series-- in plot.cs
+           // // push the plot button--in ...
+          //  GraphDemo.btnPlot.PerformClick();  // can't get it to work
+            //Read rr;  // this helps next lines, but chart is not defined
+           //if (rr != null)
+           // {
+           //     Plot pl = new Plot(rr,  chart);
+           // }
+         //   else
+            //{
+            //    MessageBox.Show("Error, no data to plot! Please load csv file");
+            //    return;
+            //}
         }  // end of read
 
+ 
         //functions used for retrieving the data
         public int get_nLines()
         {

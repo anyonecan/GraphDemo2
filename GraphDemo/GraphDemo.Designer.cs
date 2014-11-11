@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,16 +130,21 @@
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
+            legend2.Name = "LegendXYZ";
             this.chart.Legends.Add(legend1);
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(12, 70);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.MarkerSize = 22;
+            series1.Name = "Series1xys";
             this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(680, 421);
             this.chart.TabIndex = 5;
-            this.chart.Text = "chart1";
+            this.chart.Text = "DEPTH";
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // btnPlot
             // 
@@ -185,7 +191,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox yBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-        private System.Windows.Forms.Button btnPlot;
+       public System.Windows.Forms.Button btnPlot;
     }
 }
 
