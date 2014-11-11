@@ -95,6 +95,7 @@
             this.xBox.Name = "xBox";
             this.xBox.Size = new System.Drawing.Size(121, 21);
             this.xBox.TabIndex = 1;
+            this.xBox.Visible = false;
             // 
             // label1
             // 
@@ -104,6 +105,7 @@
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "X-Axis";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -113,6 +115,7 @@
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Y-Axis";
+            this.label2.Visible = false;
             // 
             // yBox
             // 
@@ -121,6 +124,7 @@
             this.yBox.Name = "yBox";
             this.yBox.Size = new System.Drawing.Size(121, 21);
             this.yBox.TabIndex = 3;
+            this.yBox.Visible = false;
             // 
             // chart
             // 
@@ -138,6 +142,7 @@
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series1.Legend = "Legend1";
+            series1.MarkerColor = System.Drawing.Color.Red;
             series1.MarkerSize = 22;
             series1.Name = "Series1xys";
             this.chart.Series.Add(series1);

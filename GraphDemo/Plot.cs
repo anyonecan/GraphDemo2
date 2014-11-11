@@ -25,8 +25,12 @@ namespace GraphDemo
             string SeriesCode ;
             string TmpS;
 
+        // ElemLabels[0] = ""; // leaves the marker
             chart.Series.Clear(); //ensure that the chart is empty
-            chart.Legends.Clear(); // moved from below to try to get everything in loop, may have to move back
+           
+            // chart.Legends.Clear(); // moved from below to try to get everything in loop, may have to move back
+            // clear legends keeps them from showing, now starts with depth at 0, how to start at 1?
+
        //     chart.mark
 
             
@@ -38,9 +42,9 @@ namespace GraphDemo
                
            }
  */
-           for (int i = 0; i < Global.nElements; i++)
+           for (int i = 0; i < Global.nElements; i++)  // try start with i = 1 not 0, that causes out of range : chart.Series[i].ChartType = SeriesChartType.Point
            {
-               TmpS =i.ToString() ;
+               TmpS = i.ToString() ;
                SeriesCode = "Series" + TmpS;
                chart.Series.Add(SeriesCode);
                chart.Series[i].ChartType = SeriesChartType.Point; // runs, but now there are lines from the X axis down to the points
@@ -60,7 +64,7 @@ namespace GraphDemo
  
 
     //       chart.Legends.Clear();
-
+           
             //for (int j = 0; j < nLines+1; j++)
             //{
             //    chart.Series[0].Points.AddXY(data[j, indX], data[j, indY]); 
@@ -72,7 +76,7 @@ namespace GraphDemo
 
            for (int j = 0; j < nLines+1 ; j++)  //lines of results from 0 to ...
            {
-               for (int indeX = 0; indeX < Global.nElements; indeX++)  // elem from 1 to ...   
+               for (int indeX = 1; indeX < Global.nElements; indeX++)  // elem from 1 to ...    try index = 1, not 0
                {
                    chart.Series[indeX ].Points.AddXY(data[j, indeX], data[j, indY]); 
                }
@@ -82,3 +86,4 @@ namespace GraphDemo
         }
     }
 }
+// gratuitous change
