@@ -11,7 +11,9 @@ namespace GraphDemo
     {
         public static int nElements;
         // call it with Global.nElements
-        
+
+      //  public static Read rr;
+        // call it with Global.rr---inconsis accessibility, graphdemo.read is less acc than this
     }
     // end of try
     static class Program

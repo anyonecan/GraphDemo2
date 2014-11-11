@@ -9,12 +9,12 @@ using System.Drawing;
 
 namespace GraphDemo
 {
-    class Plot
+   class Plot  // add public--read is less accessible than plot, public partial same thing
     {
        // public Plot(Read rr, ComboBox xBox, ComboBox yBox, Chart chart)
         public Plot(Read rr,  Chart chart)
         {   // comes here when Plot button of demo is clicked
-            int indX = 1;// xBox.SelectedIndex;  // this will be 1 always
+           // int indX = 1;// xBox.SelectedIndex;  // this will be 1 always
             //int indX1 = xBox.SelectedIndex + 1;
             //int indX2 = xBox.SelectedIndex + 2;
             //int indX3 = xBox.SelectedIndex + 3;

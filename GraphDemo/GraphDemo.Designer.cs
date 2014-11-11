@@ -195,8 +195,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox yBox;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-       public System.Windows.Forms.Button btnPlot;
+        public System.Windows.Forms.DataVisualization.Charting.Chart chart;   // was private, tried public
+        public System.Windows.Forms.Button btnPlot;  // probably was private
     }
 }
 

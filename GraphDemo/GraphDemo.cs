@@ -10,10 +10,10 @@ using System.IO;
 
 namespace GraphDemo
 {
-    public partial class GraphDemo : Form
+    public  partial class  GraphDemo : Form
     {
         
-        Read rr;
+        Read rr;  // a variable of type Read
 
         public GraphDemo()
         {

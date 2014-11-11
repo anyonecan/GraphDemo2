@@ -9,6 +9,10 @@ namespace GraphDemo
 
     class Read
     {
+        Plot pp;  // maybe these will give us the scope to get a plot going after read
+
+        GraphDemo gd;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;   // taken frm graphdemo.designer.cs, made private
         private string[] header;
         private string[] ElemNames;
         private float[,] data;
@@ -69,7 +73,7 @@ namespace GraphDemo
                     tmp = aux.Split(',');
                     tmptmp = tmp.Length;
                     testval = tmp.GetValue(i).ToString();
-                    if (i ==929) i = i;
+                    if (i ==929) i = 929;
                     if (testval.Length > 0)
                     {
                         indexes[jj] = i;
@@ -133,7 +137,7 @@ namespace GraphDemo
                     {
                         data[nLines,i] = float.Parse(pieces[indexes[i]]);
                     }
-                    catch (Exception err)
+                    catch (Exception err)  // warning err never used
                     {
 
                         data[nLines,i]=0;  // if <DL
@@ -150,21 +154,25 @@ namespace GraphDemo
                 }
             }
             sr.Close();
-            jj = jj;
+            //jj = jj;
             // set the series-- in plot.cs
+
+
            // // push the plot button--in ...
-          //  GraphDemo.btnPlot.PerformClick();  // can't get it to work
-            //Read rr;  // this helps next lines, but chart is not defined
-           //if (rr != null)
-           // {
-           //     Plot pl = new Plot(rr,  chart);
-           // }
+        //    GraphDemo.Plot();
+
+       //    GraphDemo.btnPlot.PerformClick();  // can't get it to work
+           Read rr;  // this helps next lines, but chart is not defined
+          //  if (rr != null)                    // this is from GraphDemo.cs
+            {
+             //   Plot pl = new Plot(rr, chart);
+            }
          //   else
-            //{
-            //    MessageBox.Show("Error, no data to plot! Please load csv file");
-            //    return;
-            //}
-        }  // end of read
+            {
+              //  MessageBox.Show("Error, no data to plot! Please load csv file");
+        //        return;
+            }
+        }  // end of class read
 
  
         //functions used for retrieving the data
