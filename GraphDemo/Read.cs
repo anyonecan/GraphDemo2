@@ -101,7 +101,7 @@ namespace GraphDemo
                     ElemLabels[v] = tmp2;
                     if (v == 10)
                     {
-                        v = v;
+                      //  v = v;
                     }
                     v++;
                     tmpint = indexes[v];
@@ -146,7 +146,7 @@ namespace GraphDemo
                     {
                         if (i == Global.nElements - 1)
                        {
-                           i = i;
+                         //  i = i;
                        }
                     }
                   
@@ -196,4 +196,5 @@ namespace GraphDemo
             return ElemLabels;
         }
     }
+
 }
