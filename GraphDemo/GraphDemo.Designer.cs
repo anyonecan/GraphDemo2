@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+#if guish
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+#endif
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +46,9 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnPlot = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+#if guish
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+#endif
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -128,22 +132,28 @@
             // 
             // chart
             // 
+#if guish
             chartArea1.AxisX.Minimum = 0D;
             chartArea1.AxisY.IsReversed = true;
             chartArea1.AxisY.Minimum = 0D;
+#endif
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
+#if guish
             legend1.Name = "Legend1";
             legend2.Name = "LegendXYZ";
             this.chart.Legends.Add(legend1);
             this.chart.Legends.Add(legend2);
+#endif
             this.chart.Location = new System.Drawing.Point(12, 70);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
+#if guish
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series1.Legend = "Legend1";
             series1.MarkerColor = System.Drawing.Color.Red;
             series1.MarkerSize = 22;
+#endif
             series1.Name = "Series1xys";
             this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(680, 421);
@@ -178,7 +188,9 @@
             this.Text = "GraphDemo";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+#if guish
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+#endif
             this.ResumeLayout(false);
             this.PerformLayout();
 

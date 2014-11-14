@@ -9,10 +9,6 @@ namespace GraphDemo
 
     class Read
     {
-        Plot pp;  // maybe these will give us the scope to get a plot going after read
-
-        GraphDemo gd;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;   // taken frm graphdemo.designer.cs, made private
         private string[] header;
         private string[] ElemNames;
         private float[,] data;
@@ -21,10 +17,13 @@ namespace GraphDemo
        // public  int nElements;        // will this include depth in the count?
         int[] indexes= new int[100];  // places in line where there are element names or concentrations
         string[] ElemLabels = new string[100];   // will start with 'depth at beginning'
-        int q; // was i but took out 'for'
+      //alh: not used: int q; // was i but took out 'for'
+	    public Read(){
+			//do nothing.
+		  }
 
-        public Read(Stream myStream)
-        {
+      public void parse(Stream myStream)
+      {
             string aux;
             string testval;  // for example a conc as a string
             string[] tmp;
@@ -36,7 +35,7 @@ namespace GraphDemo
             int v; // for index into elemnames
          //   int nElements;        // will this include depth in the count? --- move to global
            
-
+      Console.WriteLine("parsing data into 'READ' ");
             //read the file line by line
             // discard the first 6 lines
             StreamReader sr = new StreamReader(myStream);
@@ -153,26 +152,8 @@ namespace GraphDemo
                     
                 }
             }
-            sr.Close();
-            //jj = jj;
-            // set the series-- in plot.cs
-
-
-           // // push the plot button--in ...
-        //    GraphDemo.Plot();
-
-       //    GraphDemo.btnPlot.PerformClick();  // can't get it to work
-           Read rr;  // this helps next lines, but chart is not defined
-          //  if (rr != null)                    // this is from GraphDemo.cs
-            {
-             //   Plot pl = new Plot(rr, chart);
-            }
-         //   else
-            {
-              //  MessageBox.Show("Error, no data to plot! Please load csv file");
-        //        return;
-            }
-        }  // end of class read
+            sr.Close();//alh: consider letting caller close the stream.
+        }  // end of parser
 
  
         //functions used for retrieving the data

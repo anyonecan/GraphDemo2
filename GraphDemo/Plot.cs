@@ -11,9 +11,14 @@ namespace GraphDemo
 {
    class Plot  // add public--read is less accessible than plot, public partial same thing
     {
+		public Plot(){
+			//do nothing
+		}
        // public Plot(Read rr, ComboBox xBox, ComboBox yBox, Chart chart)
-        public Plot(Read rr,  Chart chart)
+        public void render(Read rr,  Chart chart)
         {   // comes here when Plot button of demo is clicked
+
+      Console.WriteLine("rendering data to chart");
            // int indX = 1;// xBox.SelectedIndex;  // this will be 1 always
             //int indX1 = xBox.SelectedIndex + 1;
             //int indX2 = xBox.SelectedIndex + 2;
@@ -34,8 +39,9 @@ namespace GraphDemo
        //     chart.mark
 
             
-
+#if guish			
            chart.ChartAreas[0].AxisX.Minimum = 0;  // try this here, do we need for all x's? MyChart goes to chart--works
+#endif
 
  /*      for (int i = 0; i < nElements; i++)  // have to get nElements public
            {
@@ -47,7 +53,9 @@ namespace GraphDemo
                TmpS = i.ToString() ;
                SeriesCode = "Series" + TmpS;
                chart.Series.Add(SeriesCode);
+#if guish
                chart.Series[i].ChartType = SeriesChartType.Point; // runs, but now there are lines from the X axis down to the points
+#endif
                chart.Series[i].Name = ElemLabels[i];
 
            }
@@ -78,7 +86,9 @@ namespace GraphDemo
            {
                for (int indeX = 1; indeX < Global.nElements; indeX++)  // elem from 1 to ...    try index = 1, not 0
                {
+#if guish
                    chart.Series[indeX ].Points.AddXY(data[j, indeX], data[j, indY]); 
+#endif
                }
            }
 
