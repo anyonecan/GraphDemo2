@@ -15,17 +15,24 @@ namespace GraphDemo {
 		FileSystemWatcher watcher = new FileSystemWatcher ();
 		Read rr = new Read ();
 		Plot plotter = new Plot ();
+
+    int filechanged=0;//a count
+    int lastchangeprocessed=0;//
+    Timer checkForChanges= new System.Windows.Forms.Timer();
 		
 		public void renderFile () {
 			Console.WriteLine ("Rendering "+ filepath);
 			Stream myStream = File.OpenRead (filepath);
 			rr.parse (myStream);
 			plotter.render (rr, chart);
+      lastchangeprocessed=filechanged;
 		}
 		
 		public GraphDemo () {
 			InitializeComponent ();
 			initFileWatcher ();
+      checkForChanges.Interval=500;//half a second for testing, may make longer for real use
+      checkForChanges.Stop();//wait until a file is picked
 		}
 
 		private void exitToolStripMenuItem_Click (object sender, EventArgs e) {
@@ -43,10 +50,8 @@ namespace GraphDemo {
 				filepath = ff.FileName;
 				updateFileWatcher ();
 				renderFile ();
-#if guish //need to move this into its own function.			
+#if needstobesomewhereelseifstillneededatall //need to move this into its own function.
 				try {
-					
-					
 					if ((myStream = ff.OpenFile ()) != null) {
 						using (myStream) {
 							rr = null;
@@ -108,21 +113,24 @@ namespace GraphDemo {
 
 		}
 
+    //one time initialization. Call this again and the responses will be doubled.
 		public void initFileWatcher () {
       //just watch for changes.
-			watcher.NotifyFilter = NotifyFilters.LastWrite;
-		
+			watcher.NotifyFilter = NotifyFilters.Size;//size  so as to only trigger on added lines.
+		  updateFileWatcher();//doing this here allows us to have a default file watched on program start.
 			// Add event handlers.
 			watcher.Changed += new FileSystemEventHandler (OnChanged);
+      checkForChanges.Tick+= new EventHandler(OnTick);
 		}
 		
 		private void updateFileWatcher () {
-			if (filepath != null && filepath.Length > 4) {
+			if (filepath != null && filepath.Length > 4) {//try to exclude accidnetal picks of C:\ and the like.
 				Console.WriteLine ("Watch for changes to "+filepath);
 				watcher.Path = Path.GetDirectoryName (filepath);  
 				watcher.Filter = Path.GetFileName (filepath);
 				// Begin watching.
 				watcher.EnableRaisingEvents = true;
+        checkForChanges.Start();
 			} else {
 				Console.WriteLine ("no longer watching a file");
 				watcher.EnableRaisingEvents = false;
@@ -133,8 +141,15 @@ namespace GraphDemo {
 		private void OnChanged (object source, FileSystemEventArgs e) {
 			// Specify what is done when a file is changed, created, or deleted.
 			Console.WriteLine ("File: " + e.FullPath + " " + e.ChangeType);
-			renderFile();
+      ++filechanged; //not worrying about exceeding 2 billion.
+			//moved to Timer handler renderFile();
 		}
+
+    private void OnTick(Object myObject,EventArgs myEventArgs){
+      if(filechanged>lastchangeprocessed){
+        renderFile();
+      }
+    }
 
 		private void OnRenamed (object source, RenamedEventArgs e) {
 			// Specify what is done when a file is renamed.
